@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DJ Tracklist Detector</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="13" stroke="#a259ff" stroke-width="2"/>
+            <circle cx="14" cy="14" r="5" fill="#a259ff"/>
+            <circle cx="14" cy="14" r="2" fill="#0f0f13"/>
+            <line x1="14" y1="1" x2="14" y2="5" stroke="#a259ff" stroke-width="1.5"/>
+            <line x1="14" y1="23" x2="14" y2="27" stroke="#a259ff" stroke-width="1.5"/>
+            <line x1="1" y1="14" x2="5" y2="14" stroke="#a259ff" stroke-width="1.5"/>
+            <line x1="23" y1="14" x2="27" y2="14" stroke="#a259ff" stroke-width="1.5"/>
+          </svg>
+          <span>DJ Tracklist Detector</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- Input Panel -->
+      <section class="panel input-panel">
+        <div class="field">
+          <label for="url-input">YouTube URL</label>
+          <input id="url-input" type="url" placeholder="https://www.youtube.com/watch?v=..." />
+        </div>
+
+        <div class="field">
+          <label for="api-key">
+            AudD API Key
+            <a class="badge" id="get-key-link">Get free key →</a>
+          </label>
+          <input id="api-key" type="password" placeholder="Your AudD API token" />
+        </div>
+
+        <div class="settings-row">
+          <div class="field small">
+            <label for="interval">Sample every</label>
+            <div class="select-wrap">
+              <select id="interval">
+                <option value="30">30 sec</option>
+                <option value="60" selected>60 sec</option>
+                <option value="90">90 sec</option>
+                <option value="120">2 min</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field small">
+            <label for="clip-dur">Clip length</label>
+            <div class="select-wrap">
+              <select id="clip-dur">
+                <option value="10">10 sec</option>
+                <option value="15" selected>15 sec</option>
+                <option value="20">20 sec</option>
+              </select>
+            </div>
+          </div>
+
+          <button id="detect-btn" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M6 5.5l4 2.5-4 2.5V5.5z" fill="currentColor"/>
+            </svg>
+            Detect Songs
+          </button>
+        </div>
+      </section>
+
+      <!-- Progress -->
+      <section class="panel progress-panel" id="progress-panel" style="display:none">
+        <div class="progress-header">
+          <span id="status-text">Initializing...</span>
+          <span id="progress-count"></span>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div id="found-count" class="found-count"></div>
+      </section>
+
+      <!-- Results -->
+      <section class="panel results-panel" id="results-panel" style="display:none">
+        <div class="results-header">
+          <h2 id="results-title">Tracklist</h2>
+          <div class="results-actions">
+            <button class="btn-ghost" id="copy-btn">Copy</button>
+            <button class="btn-ghost" id="save-btn">Save .txt</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table id="tracks-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Time</th>
+                <th>Artist</th>
+                <th>Title</th>
+                <th class="links-col">Links</th>
+              </tr>
+            </thead>
+            <tbody id="tracks-body"></tbody>
+          </table>
+        </div>
+
+        <p class="no-results" id="no-results" style="display:none">
+          No songs were identified. Try a shorter sample interval or a longer clip length.
+        </p>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
