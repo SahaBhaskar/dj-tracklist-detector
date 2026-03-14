@@ -15,9 +15,9 @@
             <circle cx="14" cy="14" r="13" stroke="#a259ff" stroke-width="2"/>
             <circle cx="14" cy="14" r="5" fill="#a259ff"/>
             <circle cx="14" cy="14" r="2" fill="#0f0f13"/>
-            <line x1="14" y1="1" x2="14" y2="5" stroke="#a259ff" stroke-width="1.5"/>
+            <line x1="14" y1="1"  x2="14" y2="5"  stroke="#a259ff" stroke-width="1.5"/>
             <line x1="14" y1="23" x2="14" y2="27" stroke="#a259ff" stroke-width="1.5"/>
-            <line x1="1" y1="14" x2="5" y2="14" stroke="#a259ff" stroke-width="1.5"/>
+            <line x1="1"  y1="14" x2="5"  y2="14" stroke="#a259ff" stroke-width="1.5"/>
             <line x1="23" y1="14" x2="27" y2="14" stroke="#a259ff" stroke-width="1.5"/>
           </svg>
           <span>DJ Tracklist Detector</span>
@@ -26,17 +26,18 @@
     </header>
 
     <main class="main">
+
       <!-- Input Panel -->
       <section class="panel input-panel">
         <div class="field">
           <label for="url-input">YouTube URL</label>
-          <input id="url-input" type="url" placeholder="https://www.youtube.com/watch?v=..." />
+          <input id="url-input" type="url" placeholder="https://www.youtube.com/watch?v=…" />
         </div>
 
         <div class="field">
           <label for="api-key">
             AudD API Key
-            <a class="badge" id="get-key-link">Get free key →</a>
+            <a class="badge" href="https://dashboard.audd.io/" target="_blank" rel="noopener">Get free key →</a>
           </label>
           <input id="api-key" type="password" placeholder="Your AudD API token" />
         </div>
@@ -76,9 +77,9 @@
       </section>
 
       <!-- Progress -->
-      <section class="panel progress-panel" id="progress-panel" style="display:none">
+      <section class="panel progress-panel" id="progress-panel" hidden>
         <div class="progress-header">
-          <span id="status-text">Initializing...</span>
+          <span id="status-text">Initializing…</span>
           <span id="progress-count"></span>
         </div>
         <div class="progress-bar-wrap">
@@ -87,8 +88,13 @@
         <div id="found-count" class="found-count"></div>
       </section>
 
+      <!-- Error -->
+      <section class="panel error-panel" id="error-panel" hidden>
+        <p id="error-text"></p>
+      </section>
+
       <!-- Results -->
-      <section class="panel results-panel" id="results-panel" style="display:none">
+      <section class="panel results-panel" id="results-panel" hidden>
         <div class="results-header">
           <h2 id="results-title">Tracklist</h2>
           <div class="results-actions">
@@ -112,7 +118,7 @@
           </table>
         </div>
 
-        <p class="no-results" id="no-results" style="display:none">
+        <p class="no-results" id="no-results" hidden>
           No songs were identified. Try a shorter sample interval or a longer clip length.
         </p>
       </section>
